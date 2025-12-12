@@ -13,6 +13,8 @@ import androidx.navigation.NavHostController
 import com.spinandgg.app.ui.componentes.AgregarNavBar
 import com.spinandgg.app.ui.componentes.AgregarTarjetaApuesta
 
+import androidx.compose.foundation.lazy.LazyColumn
+
 @Composable
 fun CargarListadoDeApuestas(navController: NavHostController) {
 
@@ -47,18 +49,18 @@ fun CargarListadoDeApuestas(navController: NavHostController) {
         }
 
         // 2. Parte Media: Azul (60%)
-        Column (
+        LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(0.8f) // Ocupa el 60% de la altura
+                .weight(0.76f) // Ajustado ligeramente para acomodar NavBar si no está en el Box
                 .background(Color(0xFF0D0335))
+                .padding(bottom = 8.dp) // Opcional: añade un poco de espacio en la parte inferior de la lista
         ) {
-            // Aquí irá el contenido principal o imagen
-            AgregarTarjetaApuesta()
-            AgregarTarjetaApuesta()
-            AgregarTarjetaApuesta()
-            AgregarTarjetaApuesta()
-            //TODO ARREGLAR ESTA PUTISIMA Y REVERANDA MIERDA
+            // Usa 'items' para crear elementos por cada dato real
+            items(7) { // Esto generará 10 tarjetas (cambia 10 por el tamaño real de tu lista de datos)
+                AgregarTarjetaApuesta()
+                Spacer(modifier = Modifier.height(60.dp)) // Espacio entre tarjetas
+            }
         }
 
         // 3. Parte Inferior: Negra (20%)
