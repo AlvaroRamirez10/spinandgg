@@ -150,11 +150,11 @@ fun CargarLogin(navController: NavHostController) {
                                     launchSingleTop = true
                                 }
                             } else {
-                                errorMessage = "La contraseña o el usuario estan mal "
+                                errorMessage = "Usuario o contraseña incorrectos"
                             }
                         }
                         if ((usuarioActivo?.password == null) || (usuarioActivo?.username == null) ){
-                        errorMessage = "No hay nada escrito en el password o en el usuario "
+                        errorMessage = "Usuario o Contraseña sin rellenar"
                         }
                     },
                     modifier = Modifier
