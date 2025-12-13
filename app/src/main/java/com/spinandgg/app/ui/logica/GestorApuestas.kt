@@ -10,6 +10,4 @@ object GestorApuestas {
         apuestasExistentes.add(Apuesta(1, "fotopartido", "T1", "G2", 1.25, 4.30, 3.50))
         apuestasExistentes.add(Apuesta(1, "fotopartido", "Betis", "Sevilla", 1.25, 4.30, 3.50))
     }
-
-
 }

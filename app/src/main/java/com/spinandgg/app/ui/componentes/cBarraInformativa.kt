@@ -8,10 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun AgregarBarraNavegacion(modifier: Modifier = Modifier) {
+fun AgregarBarraInformativa(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .background(Color.Yellow)
+            .background(Color.Magenta)
     )
 }

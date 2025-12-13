@@ -14,67 +14,45 @@ import com.spinandgg.app.ui.componentes.AgregarNavBar
 import com.spinandgg.app.ui.componentes.AgregarTarjetaApuesta
 
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import com.spinandgg.app.ui.componentes.AgregarBarraBusqueda
+import com.spinandgg.app.ui.componentes.AgregarBarraNavegacion
+import com.spinandgg.app.ui.componentes.AgregarCabecera
+import com.spinandgg.app.ui.logica.GestorApuestas
 
 @Composable
 fun CargarListadoDeApuestas(navController: NavHostController) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        AgregarCabecera(modifier = Modifier.weight(0.8f))
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        // 1. Parte Superior: Negra (20%)
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(0.12f)
-                .background(Color.Black)
-        ) {
+        AgregarBarraBusqueda(modifier = Modifier.weight(0.8f))
 
-            // Logo a la izquierda
-            Image(
-                painter = painterResource(id = com.spinandgg.app.R.drawable.logo),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(150.dp)
-                    .align(Alignment.Center)
-            )
-
-            // Avatar a la derecha
-            Image(
-                painter = painterResource(id = com.spinandgg.app.R.drawable.avatar),
-                contentDescription = "Icono derecho",
-                modifier = Modifier
-                    .size(80.dp)
-                    .align(Alignment.CenterEnd) // Centrado vertical, pegado a la derecha
-                    .padding(end = 16.dp)
-            )
-
-        }
-
-        // 2. Parte Media: Azul (60%)
         LazyColumn(
             modifier = Modifier
+                .weight(7.7f)
                 .fillMaxWidth()
-                .weight(0.76f) // Ajustado ligeramente para acomodar NavBar si no está en el Box
-                .background(Color(0xFF0D0335))
-                .padding(bottom = 8.dp) // Opcional: añade un poco de espacio en la parte inferior de la lista
+                .background(Color.Green)
         ) {
-            // Usa 'items' para crear elementos por cada dato real
-            items(7) { // Esto generará 10 tarjetas (cambia 10 por el tamaño real de tu lista de datos)
-                AgregarTarjetaApuesta()
-                Spacer(modifier = Modifier.height(60.dp)) // Espacio entre tarjetas
+            items(GestorApuestas.apuestasExistentes) { apuesta ->
+                AgregarTarjetaApuesta(
+                    apuesta = apuesta,
+                    onClickEquipoLocal = {
+                            apuestaSeleccionada -> //logica
+                    },
+                    onClickEmpate = {
+                            apuestaSeleccionada -> //logica
+                    },
+                    onClickEquipoVisitante = {
+                            apuestaSeleccionada -> //logica
+                    },
+                )
             }
         }
 
-        // 3. Parte Inferior: Negra (20%)
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(0.12f) // Ocupa el 20% de la altura
-                .background(Color.Black)
-        ) {
-            // Aquí puedes poner botones o información inferior
-        }
-
-        AgregarNavBar(navController)
+        AgregarBarraNavegacion(modifier = Modifier.weight(0.7f))
     }
 }
-
 
