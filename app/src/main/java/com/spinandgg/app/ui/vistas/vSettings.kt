@@ -39,9 +39,9 @@ fun CargarSettings(navController: NavHostController) {
         .fillMaxSize()
         .background(Color(0xFFF2F2F2))
     ) {
-        AgregarCabecera(modifier = Modifier.weight(0.8f))
+        AgregarCabecera(modifier = Modifier.weight(1f))
 
-        AgregarBarraInformativa(modifier = Modifier.weight(0.8f), "MI CUENTA", Color.Black,Color(
+        AgregarBarraInformativa(modifier = Modifier.weight(0.6f), "MI CUENTA", Color.Black,Color(
             0xCCE4E4E4
         )
         )

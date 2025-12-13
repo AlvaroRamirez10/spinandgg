@@ -21,9 +21,9 @@ fun CargarHome(navController: NavHostController) {
         modifier = Modifier
             .fillMaxSize()
     ) {
-        AgregarCabecera(modifier = Modifier.weight(0.8f))
+        AgregarCabecera(modifier = Modifier.weight(1f))
 
-        AgregarBarraInformativa(modifier = Modifier.weight(0.8f), "RESULTADOS DE ÚLTIMOS PARTIDOS", Color.White,Color(0xFF000000))
+        AgregarBarraInformativa(modifier = Modifier.weight(0.6f), "RESULTADOS DE ÚLTIMOS PARTIDOS", Color.White,Color(0xFF000000))
 
         LazyColumn(
             modifier = Modifier

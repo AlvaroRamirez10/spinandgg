@@ -22,9 +22,9 @@ fun CargarListadoDeApuestas(navController: NavHostController) {
         modifier = Modifier
             .fillMaxSize()
     ) {
-        AgregarCabecera(modifier = Modifier.weight(0.8f))
+        AgregarCabecera(modifier = Modifier.weight(1f))
 
-        AgregarBarraBusqueda(modifier = Modifier.weight(0.8f))
+        AgregarBarraBusqueda(modifier = Modifier.weight(0.6f))
 
         LazyColumn(
             modifier = Modifier

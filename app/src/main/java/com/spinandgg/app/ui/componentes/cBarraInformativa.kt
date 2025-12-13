@@ -23,7 +23,7 @@ fun AgregarBarraInformativa(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(60.dp)
+            .height(50.dp)
             .background(bgColor),
         contentAlignment = Alignment.Center
     ) {
