@@ -24,7 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.spinandgg.app.ui.componentes.AgregarBarraBusqueda
 import com.spinandgg.app.ui.componentes.AgregarBarraInformativa
 import com.spinandgg.app.ui.componentes.AgregarBarraNavegacion
 import com.spinandgg.app.ui.componentes.AgregarCabecera
@@ -33,8 +32,8 @@ import com.spinandgg.app.ui.logica.GestorUsuarios
 
 @Composable
 fun CargarSettings(navController: NavHostController) {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf(GestorUsuarios.usuarioActivo?.email ?: "???") }
+    var password by remember { mutableStateOf(GestorUsuarios.usuarioActivo?.password ?: "???") }
 
     Column(modifier = Modifier
         .fillMaxSize()
@@ -69,13 +68,6 @@ fun CargarSettings(navController: NavHostController) {
                 .weight(7.7f)
                 .padding(20.dp, 10.dp, 20.dp)
         ) {
-            // Email estático
-            Text(
-                text = "Email: ...",
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
-            )
-
             // Subtítulo
             Text(
                 text = "Datos de contacto",
