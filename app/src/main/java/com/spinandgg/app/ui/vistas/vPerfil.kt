@@ -1,207 +1,151 @@
 package com.spinandgg.app.ui.vistas
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.zIndex
 import androidx.navigation.NavHostController
-
+import com.spinandgg.app.R
+import com.spinandgg.app.ui.componentes.AgregarBarraNavegacion
+import com.spinandgg.app.ui.componentes.AgregarCabecera
 
 @Composable
 fun CargarPerfil(navController: NavHostController) {
-    var nombre by remember { mutableStateOf("nombre de usuario") }
-    var correo by remember { mutableStateOf("correo electrónico") }
-
-    var ocupacion = "Analista de datos Senior"
-    var textoDescriptivo = "Especialista con 6 años de experiencia, trabajando en Google actualmente"
-
-
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(Color(0xFF0D0335))
     ) {
-        Box(
+        // Cabecera
+        AgregarCabecera(modifier = Modifier.weight(1f), navController)
+
+        // Contenido del perfil
+        Column(
             modifier = Modifier
-                .size(180.dp)
+                .weight(7.7f)
+                .fillMaxWidth()
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
         ) {
+            Spacer(modifier = Modifier.height(40.dp))
+
+            // Foto de perfil
             Image(
-                painter = painterResource(id = com.spinandgg.app.R.drawable.usuario_1),
+                painter = painterResource(id = R.drawable.user_ico),
                 contentDescription = "Foto de perfil",
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .matchParentSize()
-                    .zIndex(0f),
                 contentScale = ContentScale.Crop,
-            )
-
-            // Texto encima de la imagen
-            Text(
-                text = correo,
-                fontSize = 20.sp,
-                color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(bottom = 8.dp)
-                    .zIndex(1f)
-                    .shadow(30.dp, CircleShape)
-                    .background(MaterialTheme.colorScheme.background)
-                    .padding(6.dp, 2.dp)
+                    .size(120.dp)
+                    .clip(CircleShape)
             )
-        }
 
-        Text(
-            text = nombre,
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(0.dp, 10.dp, 0.dp, 0.dp)
-        )
+            Spacer(modifier = Modifier.height(24.dp))
 
-        Text(
-            text = ocupacion,
-            fontSize = 16.sp,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier
-                .padding(0.dp, 2.dp)
-        )
+            // Nombre de usuario
+            Text(
+                text = "Usuario Demo",
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
 
-        Text(
-            text = textoDescriptivo,
-            fontSize = 16.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .padding(10.dp, 10.dp, 10.dp, 30.dp)
-        )
+            Spacer(modifier = Modifier.height(8.dp))
 
-        Row (
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            StatItem("125", "Seguidores")
-            StatItem("342", "Likes")
-            StatItem("18", "Proyectos")
-        }
+            // Email
+            Text(
+                text = "usuario@spinandgg.com",
+                fontSize = 16.sp,
+                color = Color.White.copy(alpha = 0.7f)
+            )
 
-        OutlinedTextField(
-            value = nombre,
-            onValueChange = { nombre = it },
-            label = { Text("Nombre") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 20.dp, 0.dp, 10.dp)
-        )
+            Spacer(modifier = Modifier.height(40.dp))
 
-        OutlinedTextField(
-            value = correo,
-            onValueChange = { correo = it },
-            label = { Text("Correo electrónico") },
-            singleLine = true,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 0.dp, 0.dp, 20.dp)
-        )
+            // Información del usuario
+            InfoBox(label = "Nombre completo", value = "Juan Pérez González")
+            Spacer(modifier = Modifier.height(16.dp))
+            InfoBox(label = "Teléfono", value = "+34 612 345 678")
+            Spacer(modifier = Modifier.height(16.dp))
+            InfoBox(label = "Fecha de registro", value = "15 de Noviembre, 2024")
 
-        Row (
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier
-                .padding(bottom = 40.dp)
-        ) {
+            Spacer(modifier = Modifier.weight(1f))
+
             Button(
-                onClick = { /* TODO: acción */ },
-                Modifier.weight(1f)
-            ) {Text("Aceptar")}
-
-            OutlinedButton(
-                onClick = { /* TODO: acción */ },
-                Modifier.weight(1f)
-            ) {Text("Cancelar")}
+                onClick = {
+                    navController.navigate("rutaHome") {
+                        popUpTo("rutaHome") { inclusive = true }
+                        launchSingleTop = true
+                    }
+                },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF2639C6),
+                    contentColor = Color.White
+                ),
+                shape = RoundedCornerShape(12.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+            ) {
+                Text(
+                    text = "Volver a la App",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            Spacer(modifier = Modifier.height(24.dp))
         }
 
-        Box (
-            Modifier.size(200.dp)
-        ) {
-            Text(
-                text = "TL",
-                modifier = Modifier
-                    .align(Alignment.TopStart)
-            )
-            Text(
-                text = "TR",
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-            )
-            Text(
-                text = "BL",
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-            )
-            Text(
-                text = "BR",
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-            )
-            Text(
-                text = "CENTER",
-                modifier = Modifier
-                    .align(Alignment.Center)
-            )
-        }
+        AgregarBarraNavegacion(modifier = Modifier.weight(0.7f), navController)
     }
 }
 
 @Composable
-fun StatItem(valor: String, etiqueta: String) {
-    Column (
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        Text(
-            text = valor,
-            fontSize = 26.sp,
-            fontWeight = FontWeight.Bold
-        )
-
-        Text(
-            text = etiqueta,
-            fontSize = 16.sp,
-        )
+private fun InfoBox(label: String, value: String) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(
+                color = Color.White.copy(alpha = 0.1f),
+                shape = RoundedCornerShape(12.dp)
+            )
+            .padding(16.dp)
+    ) {
+        Column {
+            Text(
+                text = label,
+                fontSize = 12.sp,
+                color = Color.White.copy(alpha = 0.6f),
+                fontWeight = FontWeight.Medium
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = value,
+                fontSize = 16.sp,
+                color = Color.White,
+                fontWeight = FontWeight.Medium
+            )
+        }
     }
 }
