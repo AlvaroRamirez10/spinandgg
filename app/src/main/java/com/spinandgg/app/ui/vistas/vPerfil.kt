@@ -30,6 +30,9 @@ import androidx.navigation.NavHostController
 import com.spinandgg.app.R
 import com.spinandgg.app.ui.componentes.AgregarBarraNavegacion
 import com.spinandgg.app.ui.componentes.AgregarCabecera
+import com.spinandgg.app.ui.logica.GestorUsuarios
+import com.spinandgg.app.ui.logica.GestorUsuarios.obtenerIdDesdeNombre
+import com.spinandgg.app.ui.logica.GestorUsuarios.usuarioActivo
 
 @Composable
 fun CargarPerfil(navController: NavHostController) {
@@ -54,7 +57,11 @@ fun CargarPerfil(navController: NavHostController) {
 
             // Foto de perfil
             Image(
-                painter = painterResource(id = R.drawable.user_ico),
+                painter = painterResource(
+                    id = usuarioActivo?.userImg?.let {
+                        obtenerIdDesdeNombre(it)
+                    } ?: R.drawable.user_ico
+                ),
                 contentDescription = "Foto de perfil",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -66,7 +73,7 @@ fun CargarPerfil(navController: NavHostController) {
 
             // Nombre de usuario
             Text(
-                text = "Usuario Demo",
+                text = GestorUsuarios.usuarioActivo?.username ?: "???",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
@@ -76,7 +83,7 @@ fun CargarPerfil(navController: NavHostController) {
 
             // Email
             Text(
-                text = "usuario@spinandgg.com",
+                text = GestorUsuarios.usuarioActivo?.email ?: "???",
                 fontSize = 16.sp,
                 color = Color.White.copy(alpha = 0.7f)
             )
@@ -84,11 +91,11 @@ fun CargarPerfil(navController: NavHostController) {
             Spacer(modifier = Modifier.height(40.dp))
 
             // Información del usuario
-            InfoBox(label = "Nombre completo", value = "Juan Pérez González")
+            InfoBox(label = "Nombre completo", value = GestorUsuarios.usuarioActivo?.realname ?: "???")
             Spacer(modifier = Modifier.height(16.dp))
-            InfoBox(label = "Teléfono", value = "+34 612 345 678")
+            InfoBox(label = "Teléfono", value = GestorUsuarios.usuarioActivo?.telephone ?: "???")
             Spacer(modifier = Modifier.height(16.dp))
-            InfoBox(label = "Fecha de registro", value = "15 de Noviembre, 2024")
+            InfoBox(label = "Fecha de registro", value = GestorUsuarios.usuarioActivo?.logInDate ?: "???")
 
             Spacer(modifier = Modifier.weight(1f))
 

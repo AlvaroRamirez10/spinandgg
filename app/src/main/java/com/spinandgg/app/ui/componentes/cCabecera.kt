@@ -19,6 +19,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.spinandgg.app.R
+import com.spinandgg.app.ui.logica.GestorUsuarios.obtenerIdDesdeNombre
+import com.spinandgg.app.ui.logica.GestorUsuarios.usuarioActivo
 
 @Composable
 fun AgregarCabecera(
@@ -40,7 +42,11 @@ fun AgregarCabecera(
         )
 
         Image(
-            painter = painterResource(id = R.drawable.user_ico),
+            painter = painterResource(
+                id = usuarioActivo?.userImg?.let {
+                    obtenerIdDesdeNombre(it)
+                } ?: R.drawable.user_ico
+            ),
             contentDescription = "Perfil de usuario",
             contentScale = ContentScale.Crop,
             modifier = Modifier

@@ -28,6 +28,7 @@ import com.spinandgg.app.ui.componentes.AgregarBarraBusqueda
 import com.spinandgg.app.ui.componentes.AgregarBarraInformativa
 import com.spinandgg.app.ui.componentes.AgregarBarraNavegacion
 import com.spinandgg.app.ui.componentes.AgregarCabecera
+import com.spinandgg.app.ui.logica.GestorUsuarios
 
 
 @Composable
@@ -150,6 +151,7 @@ fun CargarSettings(navController: NavHostController) {
                         .align(Alignment.CenterHorizontally)
                         .offset(y = (60).dp)
                         .clickable {
+                            GestorUsuarios.usuarioActivo = null //Desloguear al usuario
                             navController.navigate("rutaLogin") {
                                 launchSingleTop = true
                             }

@@ -65,7 +65,6 @@ fun AgregarTarjetaApuesta(
                     shape = RoundedCornerShape(25.dp)
                 )
         ) {
-            // Hora del partido (puedes añadirla al modelo Apuesta si lo necesitas)
             Text(
                 text = apuesta.eventDate,
                 color = Color.White,
