@@ -24,11 +24,11 @@ object GestorUsuarios {
             Usuario(
                 2,
                 "alvaro666",
-                "Álvaro Pérez Sánchez",
+                "Álvaro Ramirez Rodriguez",
                 "alvaro@gmail.com",
                 "+34 678 901 234",
                 "20 de Octubre, 2024",
-                "abcd",
+                "1234",
                 "user_2"
             ),
 
